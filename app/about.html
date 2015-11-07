@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>About SF Bay Timelapse Movies</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    
+    <div class="container-fluid">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="index.html">Home</a></li>
+          <li class="active"><a href="#">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">SF Bay Timelapse Movies from the Berkeley Hills</h3>
+      </div>
+
+
+      <div class="media">
+        <div class="media-left media-top">
+          <img class="media-object" src="images/rooftopshed.png" alt="Shed" width="500">
+  	</div>
+  	<div class="media-body">
+          <h4 class="media-heading">The shed with a view.</h4>
+          <p>Camera is taking pictures from corner of window opening</p>
+  	</div>
+      </div>
+      <div class="media">
+       <div class="media-left media-top">
+          <img class="media-object" src="images/cameraandpi.jpg" alt="Shed" width="500">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">Camera setup from inside shed</h4> 
+          <p>Camera is mounted on a unipod and base is on the table.</p>
+        </div>
+      </div>
+       <div class="media">
+       <div class="media-left media-top">
+          <img class="media-object" src="images/cameraonly.jpg" alt="Shed" width="500">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">Camera on ledge</h4>
+          <p>Canon Camera. USB and power cable. USB cable connected to RasberryPi2</p>
+        </div>
+      </div>
+
+       <div class="media">
+       <div class="media-left media-top">
+          <img class="media-object" src="images/rasberrypi.jpg" alt="Shed" width="500">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">RaspberryPI 2</h4>
+          <p>Software used to capture and download images onto RaspberryPI is <a href="http://www.gphoto.org">gPhoto2</a>. Only older consumer cameras support gPhoto2 remote control over usb - <a href="http://www.gphoto.org/doc/remote/">gPhoto2 Remote control</a>. New prosumer and pro digital SLR cameras are more fully supported for remote control. I run the script below every 2 minutes on the RaspberryPi and then copy it to my server which then creates a movie from the single frames every hour. </p>
+        <pre>
+#!/bin/bash
+# SamArriola
+# 5-22-2015
+#
+# Capture and download the image. Use <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a> utility to write the date and
+# time in top right corner. Then copy the file over to home linux server.
+cd /home/pi/cam/
+rm 2min.jpg
+/usr/local/bin/gphoto2 --capture-image-and-download --filename 2min.jpg
+fdate=$(date "+%b_%d_%Y_%H_%M")
+adate=$(date "+%b %d, %Y:%H:%M ")
+convert 2min.jpg -gravity northeast -pointsize 40 \
+    -stroke black -strokewidth 4 -annotate 0 "${adate}" \
+    -stroke white -strokewidth 1 -fill white -annotate 0 "${adate}" \
+     "${fdate}".jpg
+scp "${fdate}".jpg sarriola@plex:/var/www/cam/
+       </pre>
+        </div>
+      </div>
+
+
+      <div class="footer">
+        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+      </div>
+    </div>
+    
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/jwplayer7/jwplayer.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    
+    <!-- build:js(.) scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+    
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+ 
+  </body>
+</html>
