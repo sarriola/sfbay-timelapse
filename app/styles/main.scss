@@ -6,6 +6,11 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
     overflow-y:auto;
 }
 
+.videobox {
+  padding: 10px 10px;
+  text-align: center;
+}
+
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
@@ -19,7 +24,7 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
+  padding-top: 50px;
   padding-bottom: 20px;
 }
 
