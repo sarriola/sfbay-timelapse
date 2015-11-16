@@ -13,7 +13,7 @@ var videoTimelapse = {
 
   playerSetup: function() {
     videoTimelapse.player().setup({
-      file: 'http://192.168.2.92/cam/today.mp4',
+      file: 'movies/today.mp4',
       width: '75%',
       aspectratio: '4:3',
       skin: {
