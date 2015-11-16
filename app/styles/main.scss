@@ -1,5 +1,9 @@
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
+.jw-icon .jw-icon-inline .jw-button-color .jw-reset .jw-icon-playback {
+	display: hide;
+}
+
 .list-group {
     height:200px;
     width: 100%;
@@ -8,7 +12,6 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 .videobox {
   padding: 10px 10px;
-  text-align: center;
 }
 
 // bower:scss
